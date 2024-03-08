@@ -4,12 +4,10 @@ Playlist::Playlist()
 {
 }
 
-Playlist::Playlist(string Nombre, string Descripcion, int Duracion, vector<Cancion*> Canciones)
+Playlist::Playlist(string Nombre, string Descripcion)
 {
 	this->Nombre = Nombre;
 	this->Descripcion = Descripcion;
-	this->Duracion = Duracion;
-	this->Canciones = Canciones;
 }
 
 string Playlist::getNombre()
@@ -54,52 +52,80 @@ void Playlist::setCanciones(vector<Cancion*> Canciones)
 
 void Playlist::toString()
 {
-	if (this->Canciones.empty())// validacion
-	{
-		cout << "No hay ninguna cuenta" << endl;
-	}
-	else {
-		int contador = 1;
-		int contadorCanciones = 1;
+	int contador = 1;
+	int contadorCanciones = 1;
+		cout << "Playlist: " << contador << endl;
+		this->Nombre = Nombre;
+		this->Descripcion = Descripcion;
+		this->Duracion = Duracion;
+		this->Canciones = Canciones;
+		cout << "Nombre de Playlist: " << this->Nombre << endl;
+		cout << "Descripcion de la Playlist: " << this->Descripcion << endl;
+		cout << "Duracion de la Playlist: " << this->Duracion << endl;
 		for (int i = 0; i < this->Canciones.size(); i++) {
-			cout << "Playlist: " << contador << endl;
-			this->Nombre = Nombre;
-			this->Descripcion = Descripcion;
-			this->Duracion = Duracion;
-			this->Canciones = Canciones;
-			cout << "Nombre de Playlist: " << this->Nombre << endl;
-			cout << "Descripcion de la Playlist: " << this->Descripcion << endl;
-			cout << "Duracion de la Playlist: " << this->Duracion << endl;
+		if (!Canciones.empty())
+		{
 			cout << "Cancion: " << contadorCanciones << endl;
-			this->Canciones[i]->toString(); // mostrar las Canciones adentro de la Playlist
-			cout << endl;
-			contador++;
+			this->Canciones[i]->toString();
 			contadorCanciones++;
-		}
+		} // mostrar las Canciones adentro de la Playlist
+		cout << endl;
+		contador++;
 	}
 }
 
 void Playlist::calcularDuracion()
 {
 	int sumaDuracion = 0;
+	if (Canciones.empty())
+	{
+		cout << "No hay canciones en esta playlist" << endl;
+	}
+	else {
+		for (int i = 0; i < Canciones.size(); i++)
+		{
+			sumaDuracion += Canciones[i]->getDuracion();
+		}
+		setDuracion(sumaDuracion);
+	}
+}
+
+Playlist* Playlist::operator+(Cancion* song)
+{
 	for (int i = 0; i < Canciones.size(); i++)
 	{
-		sumaDuracion += Canciones[i]->getDuracion();
+		if (Canciones[i]->getTitulo() == song->getTitulo())
+		{
+			if (Canciones[i]->getArtista() == song->getArtista())
+			{
+				cout << "Esta canción tiene el mismo nombre de otra, es el mismo artista, no se agregara" << endl;
+			}
+			else {
+				Canciones.push_back(song);
+				calcularDuracion();
+			}
+		}
+		else {
+			Canciones.push_back(song);
+			calcularDuracion();
+		}
 	}
-	this->Duracion = sumaDuracion;
+	return this;
 }
 
-Playlist* Playlist::operator+(Cancion*)
+Playlist* Playlist::operator-(Cancion* song)
 {
+	for (int i = 0; i < cuentas.size(); i++)
+	{
+		if (cuentas[i]->getNumeroDeCuenta() == numCuenta)
+		{
+			cuentas.erase(cuentas.begin() + i); // eliminar la cuenta
+		}
+	}
 	return nullptr;
 }
 
-Playlist* Playlist::operator-(Cancion*)
-{
-	return nullptr;
-}
-
-Playlist* Playlist::operator+(Playlist*)
+Playlist* Playlist::operator+(Playlist* lista)
 {
 	return nullptr;
 }

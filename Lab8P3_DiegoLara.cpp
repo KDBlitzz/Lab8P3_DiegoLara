@@ -2,11 +2,16 @@
 #include "Cancion.h"
 #include "Playlist.h"
 void ejercicio_1() {
+    int selectPlaylist = 0;
+    int selectCancion = 0;
+    int contCancion = 0;
     bool ejer1 = true;
     int opcion = 0;
     string titulo = "";
     string artista = "";
     int duracion = 0;
+    string nombre = "";
+    string desc = "";
     string genero = "";
     int year = 0;
     vector<Playlist*> listas;
@@ -22,11 +27,6 @@ void ejercicio_1() {
         cin >> opcion;
         switch (opcion) {
         case 1:
-            /*string Titulo;
-	string Artista;
-	int Duracion;
-	string Genero;
-	int YearDeLanzamiento;*/
             cout << "Ingrese el título de la canción: " << endl;
             cin >> titulo;
             cout << "Ingrese el nombre del artista: " << endl;
@@ -47,12 +47,68 @@ void ejercicio_1() {
             }
             canciones.push_back(new Cancion(titulo,artista,duracion,genero,year));
             cout << "Canción '" << titulo << "' agregada exitosamente." << endl;
+            contCancion++;
             break;
         case 2:
+            /*string Nombre;
+	string Descripcion;*/
+            cout << "Crear nueva playlist:" << endl;
+            cout << "Ingrese el nombre de la playlist: " << endl;
+            cin >> nombre;
+            cout << "Ingrese la descripción de la playlist:" << endl;
+            cin.ignore();
+            getline(cin, desc);
+            listas.push_back(new Playlist(nombre, desc));
+            cout << "Playlist '" << nombre << "' creada exitosamente." << endl;
             break;
         case 3:
+            if (canciones.empty())
+            {
+                cout << "No hay canciones para añadir." << endl;
+            }
+            else if(listas.empty()){
+                cout << "No hay playlists para poder añadirle canciones." << endl;
+            }
+            else {
+                cout << "--- Agregar Canción a Playlist ---" << endl;
+                for (int i = 0; i < listas.size(); i++)
+                {
+                    listas[i]->toString();
+                }
+                cout << "Seleccione una playlist por número: " << endl;
+                cin >> selectPlaylist;
+                while (listas.size() < selectPlaylist)
+                {
+                    cout << "Escoja el numero de la playlist." << endl;
+                    cin >> selectPlaylist;
+                }
+                cout << "Cancion: " << contCancion << endl;
+                for (int i = 0; i <  canciones.size(); i++)
+                {
+                    canciones[i]->toString();
+                }
+                cout << "Seleccione una canción por número: " << endl;
+                cin >> selectCancion;
+                while (canciones.size() < selectCancion)
+                {
+                    cout << "Escoja el numero de la canción." << endl;
+                    cin >> selectCancion;
+                }
+                *listas[selectPlaylist - 1] + canciones[selectCancion - 1];
+                cout << "Canción añadida a la playlist exitosamente." << endl;
+            }
             break;
         case 4:
+            if (canciones.empty())
+            {
+                cout << "No hay canciones para eliminar." << endl;
+            }
+            else if (listas.empty()) {
+                cout << "No hay playlists para poder eliminarle canciones." << endl;
+            }
+            else {
+                cout << "--- Eliminar Canción de Playlist ---" << endl;
+            }
             break;
         case 5:
             break;

@@ -10,7 +10,7 @@ private:
 	vector <Cancion*> Canciones;
 public:
 	Playlist();
-	Playlist(string Nombre, string Descripcion, int Duracion, vector<Cancion*> Canciones);
+	Playlist(string Nombre, string Descripcion);
 	string getNombre();
 	void setNombre(string Nombre);
 	string getDescripcion();
