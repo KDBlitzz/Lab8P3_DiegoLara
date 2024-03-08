@@ -11,6 +11,7 @@ private:
 	string Genero;
 	int YearDeLanzamiento;
 public:
+	Cancion();
 	Cancion(string Titulo, string Artista, int Duracion, string Genero, int YearDeLanzamiento);
 	~Cancion();
 	string getTitulo();

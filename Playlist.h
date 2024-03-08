@@ -9,6 +9,7 @@ private:
 	int Duracion;
 	vector <Cancion*> Canciones;
 public:
+	Playlist();
 	Playlist(string Nombre, string Descripcion, int Duracion, vector<Cancion*> Canciones);
 	string getNombre();
 	void setNombre(string Nombre);
@@ -21,5 +22,9 @@ public:
 	void toString();
 	void calcularDuracion();
 	Playlist* operator+(Cancion*);
+	Playlist* operator-(Cancion*);
+	Playlist* operator+(Playlist*);
+	bool operator>(Playlist*);
+
 };
 

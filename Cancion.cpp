@@ -1,5 +1,9 @@
 #include "Cancion.h"
 
+Cancion::Cancion()
+{
+}
+
 Cancion::Cancion(string Titulo, string Artista, int Duracion, string Genero, int YearDeLanzamiento)
 {
 	this->Titulo = Titulo;

@@ -1,5 +1,9 @@
 #include "Playlist.h"
 
+Playlist::Playlist()
+{
+}
+
 Playlist::Playlist(string Nombre, string Descripcion, int Duracion, vector<Cancion*> Canciones)
 {
 	this->Nombre = Nombre;
@@ -73,4 +77,34 @@ void Playlist::toString()
 			contadorCanciones++;
 		}
 	}
+}
+
+void Playlist::calcularDuracion()
+{
+	int sumaDuracion = 0;
+	for (int i = 0; i < Canciones.size(); i++)
+	{
+		sumaDuracion += Canciones[i]->getDuracion();
+	}
+	this->Duracion = sumaDuracion;
+}
+
+Playlist* Playlist::operator+(Cancion*)
+{
+	return nullptr;
+}
+
+Playlist* Playlist::operator-(Cancion*)
+{
+	return nullptr;
+}
+
+Playlist* Playlist::operator+(Playlist*)
+{
+	return nullptr;
+}
+
+bool Playlist::operator>(Playlist*)
+{
+	return false;
 }
