@@ -11,6 +11,7 @@ private:
 public:
 	Playlist();
 	Playlist(string Nombre, string Descripcion);
+	~Playlist();
 	string getNombre();
 	void setNombre(string Nombre);
 	string getDescripcion();

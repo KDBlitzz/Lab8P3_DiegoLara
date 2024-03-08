@@ -15,6 +15,11 @@ Cancion::Cancion(string Titulo, string Artista, int Duracion, string Genero, int
 
 Cancion::~Cancion()
 {
+	Titulo = "";
+	Artista = "";
+	Duracion = 0;
+	Genero = "";
+	YearDeLanzamiento = 0;
 }
 
 string Cancion::getTitulo()

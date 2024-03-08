@@ -4,7 +4,12 @@
 void ejercicio_1() {
     int selectPlaylist = 0;
     int selectCancion = 0;
+    int elimPlaylist = 0;
+    int elimCancion = 0;
     int contCancion = 0;
+    int firstPlaylist = 0;
+    int secondPlaylist = 0;
+    string nombreFusionado = "";
     bool ejer1 = true;
     int opcion = 0;
     string titulo = "";
@@ -50,8 +55,6 @@ void ejercicio_1() {
             contCancion++;
             break;
         case 2:
-            /*string Nombre;
-	string Descripcion;*/
             cout << "Crear nueva playlist:" << endl;
             cout << "Ingrese el nombre de la playlist: " << endl;
             cin >> nombre;
@@ -108,9 +111,66 @@ void ejercicio_1() {
             }
             else {
                 cout << "--- Eliminar Canción de Playlist ---" << endl;
+                for (int i = 0; i < listas.size(); i++)
+                {
+                    listas[i]->toString();
+                }
+                cout << "Seleccione una playlist por número: " << endl;
+                cin >> elimPlaylist;
+                while (listas.size() < elimPlaylist)
+                {
+                    cout << "Escoja el numero de la playlist." << endl;
+                    cin >> elimPlaylist;
+                }
+                cout << "Cancion: " << contCancion << endl;
+                for (int i = 0; i < canciones.size(); i++)
+                {
+                    canciones[i]->toString();
+                }
+                cout << "Seleccione una canción por número: " << endl;
+                cin >> elimCancion;
+                while (canciones.size() < elimCancion)
+                {
+                    cout << "Escoja el numero de la canción." << endl;
+                    cin >> elimCancion;
+                }
+                *listas[elimPlaylist - 1] - canciones[elimCancion - 1];
             }
             break;
         case 5:
+            if (listas.empty()) {
+                cout << "No hay playlists para poder fusionar." << endl;
+            }
+            else if(listas.size() < 1){
+                cout << "Se ocupan 2 playlists para poder fusionarlas." << endl;
+            }
+            else {
+                cout << "--- Fusionar Playlists ---" << endl;
+                for (int i = 0; i < listas.size(); i++)
+                {
+                    listas[i]->toString();
+                }
+                cout << "Seleccione la primer playlist por número: " << endl;
+                cin >> firstPlaylist;
+                while (listas.size() < firstPlaylist)
+                {
+                    cout << "Escoja el numero de la playlist." << endl;
+                    cin >> firstPlaylist;
+                }
+                for (int i = 0; i < listas.size(); i++)
+                {
+                    listas[i]->toString();
+                }
+                cout << "Seleccione la segunda playlist por número: " << endl;
+                cin >> secondPlaylist;
+                while (listas.size() < secondPlaylist)
+                {
+                    cout << "Escoja el numero de la playlist." << endl;
+                    cin >> secondPlaylist;
+                }
+                *listas[firstPlaylist - 1] + listas[secondPlaylist - 1];
+                cout << "Playlists fusionadas exitosamente. Nueva Playlist creada: " << nombreFusionado << endl;
+            }
             break;
         case 6:
             break;
