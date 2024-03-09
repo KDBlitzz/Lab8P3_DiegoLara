@@ -172,7 +172,9 @@ void ejercicio_1() {
 					cout << "Escoja el numero de la playlist." << endl;
 					cin >> secondPlaylist;
 				}
-				*listas[firstPlaylist - 1] + listas[secondPlaylist - 1];
+				nombreFusionado += listas[firstPlaylist - 1]->getNombre() + listas[secondPlaylist-1]->getNombre();
+				//*listas[firstPlaylist - 1] + listas[secondPlaylist - 1];
+				listas.push_back(*listas[firstPlaylist - 1] + listas[secondPlaylist - 1]);
 				cout << "Playlists fusionadas exitosamente. Nueva Playlist creada: " << nombreFusionado << endl;
 			}
 			break;
