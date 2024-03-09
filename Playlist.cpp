@@ -17,6 +17,8 @@ Playlist::~Playlist()
 		delete this->Canciones[i];
 	}
 	this->Canciones.clear();
+	this->Nombre = "";
+	this->Descripcion = "";
 }
 
 string Playlist::getNombre()
@@ -61,9 +63,6 @@ void Playlist::setCanciones(vector<Cancion*> Canciones)
 
 void Playlist::toString()
 {
-	int contador = 1;
-	int contadorCanciones = 1;
-	cout << "Playlist: " << contador << endl;
 	this->Nombre = Nombre;
 	this->Descripcion = Descripcion;
 	this->Duracion = Duracion;
@@ -71,15 +70,12 @@ void Playlist::toString()
 	cout << "Nombre de Playlist: " << this->Nombre << endl;
 	cout << "Descripcion de la Playlist: " << this->Descripcion << endl;
 	cout << "Duracion de la Playlist: " << this->Duracion << endl;
-	for (int i = 0; i < this->Canciones.size(); i++) {
-		if (!Canciones.empty())
-		{
-			cout << "Cancion: " << contadorCanciones << endl;
+	if (!Canciones.empty())// mostrar las Canciones adentro de la Playlist
+	{
+		for (int i = 0; i < this->Canciones.size(); i++) {
 			this->Canciones[i]->toString();
-			contadorCanciones++;
-		} // mostrar las Canciones adentro de la Playlist
-		cout << endl;
-		contador++;
+			cout << endl;
+		}
 	}
 }
 
@@ -101,6 +97,7 @@ void Playlist::calcularDuracion()
 
 Playlist* Playlist::operator+(Cancion* song)
 {
+	
 	if (Canciones.empty())
 	{
 		Canciones.push_back(song);
@@ -126,6 +123,7 @@ Playlist* Playlist::operator+(Cancion* song)
 			}
 		}
 	}
+	cout << "Canción añadida a la playlist exitosamente." << endl;
 	return this;
 }
 
@@ -162,20 +160,27 @@ Playlist* Playlist::operator+(Playlist* lista)
 		listaNueva->getCanciones().push_back(this->getCanciones()[i]);
 	}
 	listaNueva->setDuracion(this->getDuracion() + lista->getDuracion());
-	for (int i = 0; i < this->getCanciones().size(); i++)
+	/*for (int i = 0; i < this->getCanciones().size(); i++)
 	{
 		this->getCanciones().erase(this->getCanciones().begin() + i);
 	}
 	for (int i = 0; i < lista->getCanciones().size(); i++)
 	{
 		lista->getCanciones().erase(lista->getCanciones().begin() + i);
-	}
-	delete this;
-	delete lista;
+	}*/
+	/*delete this;
+	delete lista;*/
 	return listaNueva;
 }
 
-bool Playlist::operator>(Playlist*)
+bool Playlist::operator>(Playlist* lista)
 {
+	if (this->getDuracion() > lista->getDuracion())
+	{
+		return true;
+	}
+	else {
+		return false;
+	}
 	return false;
 }

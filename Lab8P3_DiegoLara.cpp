@@ -6,9 +6,10 @@ void ejercicio_1() {
     int selectCancion = 0;
     int elimPlaylist = 0;
     int elimCancion = 0;
-    int contCancion = 0;
     int firstPlaylist = 0;
     int secondPlaylist = 0;
+    int firstPlaylistComparar = 0;
+    int secondPlaylistComparar = 0;
     string nombreFusionado = "";
     bool ejer1 = true;
     int opcion = 0;
@@ -52,7 +53,6 @@ void ejercicio_1() {
             }
             canciones.push_back(new Cancion(titulo,artista,duracion,genero,year));
             cout << "Canción '" << titulo << "' agregada exitosamente." << endl;
-            contCancion++;
             break;
         case 2:
             cout << "Crear nueva playlist:" << endl;
@@ -76,6 +76,7 @@ void ejercicio_1() {
                 cout << "--- Agregar Canción a Playlist ---" << endl;
                 for (int i = 0; i < listas.size(); i++)
                 {
+                    cout << "Playlist: " << i + 1 << endl;
                     listas[i]->toString();
                 }
                 cout << "Seleccione una playlist por número: " << endl;
@@ -85,9 +86,9 @@ void ejercicio_1() {
                     cout << "Escoja el numero de la playlist." << endl;
                     cin >> selectPlaylist;
                 }
-                cout << "Cancion: " << contCancion << endl;
                 for (int i = 0; i <  canciones.size(); i++)
                 {
+                    cout << "Canción: " << i + 1 << endl;
                     canciones[i]->toString();
                 }
                 cout << "Seleccione una canción por número: " << endl;
@@ -98,7 +99,6 @@ void ejercicio_1() {
                     cin >> selectCancion;
                 }
                 *listas[selectPlaylist - 1] + canciones[selectCancion - 1];
-                cout << "Canción añadida a la playlist exitosamente." << endl;
             }
             break;
         case 4:
@@ -113,6 +113,7 @@ void ejercicio_1() {
                 cout << "--- Eliminar Canción de Playlist ---" << endl;
                 for (int i = 0; i < listas.size(); i++)
                 {
+                    cout << "Playlist: " << i + 1 << endl;
                     listas[i]->toString();
                 }
                 cout << "Seleccione una playlist por número: " << endl;
@@ -122,9 +123,9 @@ void ejercicio_1() {
                     cout << "Escoja el numero de la playlist." << endl;
                     cin >> elimPlaylist;
                 }
-                cout << "Cancion: " << contCancion << endl;
                 for (int i = 0; i < canciones.size(); i++)
                 {
+                    cout << "Canción: " << i + 1 << endl;
                     canciones[i]->toString();
                 }
                 cout << "Seleccione una canción por número: " << endl;
@@ -148,6 +149,7 @@ void ejercicio_1() {
                 cout << "--- Fusionar Playlists ---" << endl;
                 for (int i = 0; i < listas.size(); i++)
                 {
+                    cout << "Playlist: " << i + 1 << endl;
                     listas[i]->toString();
                 }
                 cout << "Seleccione la primer playlist por número: " << endl;
@@ -159,6 +161,7 @@ void ejercicio_1() {
                 }
                 for (int i = 0; i < listas.size(); i++)
                 {
+                    cout << "Playlist: " << i + 1 << endl;
                     listas[i]->toString();
                 }
                 cout << "Seleccione la segunda playlist por número: " << endl;
@@ -173,6 +176,50 @@ void ejercicio_1() {
             }
             break;
         case 6:
+            if (listas.empty()) {
+                cout << "No hay playlists para poder comparar." << endl;
+            }
+            else if (listas.size() < 1) {
+                cout << "Se ocupan 2 playlists para poder compararlas." << endl;
+            }
+            else {
+                cout << "--- Comparar Duración de Playlists ---" << endl;
+                for (int i = 0; i < listas.size(); i++)
+                {
+                    cout << "Playlist: " << i + 1 << endl;
+                    listas[i]->toString();
+                }
+                cout << "Seleccione la primer playlist por número: " << endl;
+                cin >> firstPlaylistComparar;
+                while (listas.size() < firstPlaylistComparar)
+                {
+                    cout << "Escoja el numero de la playlist." << endl;
+                    cin >> firstPlaylistComparar;
+                }
+                for (int i = 0; i < listas.size(); i++)
+                {
+                    cout << "Playlist: " << i + 1 << endl;
+                    listas[i]->toString();
+                }
+                cout << "Seleccione la segunda playlist por número: " << endl;
+                cin >> secondPlaylistComparar;
+                while (listas.size() < secondPlaylistComparar)
+                {
+                    cout << "Escoja el numero de la playlist." << endl;
+                    cin >> secondPlaylistComparar;
+                }
+
+                bool temp = listas[firstPlaylistComparar - 1] > listas[secondPlaylistComparar - 1];
+                if (temp)
+                {
+                    cout << "La playlist '" << listas[firstPlaylistComparar - 1]->getNombre() << "' es más larga que '" 
+                        << listas[secondPlaylistComparar - 1]->getNombre() << "'" << endl;
+                }
+                else {
+                    cout << "La playlist '" << listas[secondPlaylistComparar - 1]->getNombre() << "' es más larga que '"
+                        << listas[firstPlaylistComparar - 1]->getNombre() << "'" << endl;
+                }
+            }
             break;
         case 7:
             ejer1 = false;
