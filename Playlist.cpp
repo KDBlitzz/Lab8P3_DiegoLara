@@ -17,8 +17,8 @@ Playlist::~Playlist()
 		delete this->Canciones[i];
 	}
 	this->Canciones.clear();
-	this->Nombre = "";
-	this->Descripcion = "";
+	/*this->Nombre = "";
+	this->Descripcion = "";*/
 }
 
 string Playlist::getNombre()
@@ -61,7 +61,7 @@ void Playlist::setCanciones(vector<Cancion*> Canciones)
 	this->Canciones = Canciones;
 }
 
-void Playlist::toString()
+void Playlist::toString() // to string
 {
 	this->Nombre = Nombre;
 	this->Descripcion = Descripcion;
@@ -79,7 +79,7 @@ void Playlist::toString()
 	}
 }
 
-void Playlist::calcularDuracion()
+void Playlist::calcularDuracion() // calcular la duracion cada vez que se añade o borra una canción
 {
 	int sumaDuracion = 0;
 	if (Canciones.empty())
@@ -95,7 +95,7 @@ void Playlist::calcularDuracion()
 	}
 }
 
-Playlist* Playlist::operator+(Cancion* song)
+Playlist* Playlist::operator+(Cancion* song) // agregar una cancion a el vector
 {
 	
 	if (Canciones.empty())
@@ -127,7 +127,7 @@ Playlist* Playlist::operator+(Cancion* song)
 	return this;
 }
 
-Playlist* Playlist::operator-(Cancion* song)
+Playlist* Playlist::operator-(Cancion* song) // eliminar una cancion del vector
 {
 	if (!Canciones.empty())
 	{
@@ -146,7 +146,7 @@ Playlist* Playlist::operator-(Cancion* song)
 	return this;
 }
 
-Playlist* Playlist::operator+(Playlist* lista)
+Playlist* Playlist::operator+(Playlist* lista) // fusionar dos listas
 {
 	
 	Playlist *listaNueva = new Playlist(this->getNombre() + lista->getNombre(), this->getDescripcion() + lista->getDescripcion());
@@ -173,7 +173,7 @@ Playlist* Playlist::operator+(Playlist* lista)
 	return listaNueva;
 }
 
-bool Playlist::operator>(Playlist* lista)
+bool Playlist::operator>(Playlist* lista) // comparar las duraciones de dos listas
 {
 	if (this->getDuracion() > lista->getDuracion())
 	{
